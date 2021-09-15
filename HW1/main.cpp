@@ -1,7 +1,7 @@
 /*
 Author: Ghaly Nicolas Jules
 Class: ECE6122
-Last Date Modified: 09/10/2021
+Last Date Modified: 09/14/2021
 Description:
 What is the purpose of this file?
 */
@@ -40,24 +40,17 @@ bool GetPrimeFactors(const unsigned long uLImputNumber, string &strOutput)
 int main(int argc, const char *argv[])
 {
     // insert code here...
-    fstream outputFile;
+    ofstream outputFile;
     outputFile.open("output1.txt", ios::out | ios::trunc);
     if (outputFile.is_open())
     {
         string output = "";
-        long enteredNumber = 0;
-        cout << "Please enter your number: \n";
-        cin >> enteredNumber;
-        while (cin.fail() || cin.get() != '\n')
-        {
-            cin.clear();
-            cin.ignore(1000, '\n');
-            cout << "Wrong input. Please enter a valid number: \n";
-            cin >> enteredNumber;
-        }
+        long enteredNumber = atol(argv[1]);
         if (GetPrimeFactors(enteredNumber, output))
         {
-            outputFile << output;
+            output = output.substr(0, output.size()-2);
+            outputFile<<output;
+            cout<<output;
         }
         else
         {
